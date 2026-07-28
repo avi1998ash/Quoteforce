@@ -3,11 +3,11 @@ name: Salesforce CI Pipeline
 on:
   push:
     branches:
-      - main
+      - develop
 
   pull_request:
     branches:
-      - main
+      - develop
 
 
 jobs:
@@ -18,9 +18,11 @@ jobs:
 
     steps:
 
+      # Step 1: Get the code from repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
 
+      # Step 2: Verify repository files
       - name: Display Project Files
         run: ls -la
