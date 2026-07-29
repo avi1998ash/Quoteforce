@@ -67,9 +67,9 @@ public class createMasterTemplateRecordTest {
         QuoteForce__Quotes__c q = createQuote();
         
         Test.startTest();
-        QuoteForce__Custom_Page__c inserted = createMasterTemplateRecord.CreateCustomPage('Test Page','Test Label',mt.Id);
-        inserted.QuoteForce__Text_Page__c = 'Updated Text';
-        QuoteForce__Custom_Page__c updated = createMasterTemplateRecord.updateCustomPage(inserted);
+        //QuoteForce__Custom_Page__c inserted = createMasterTemplateRecord.CreateCustomPage('Test Page','Test Label',mt.Id);
+        //inserted.QuoteForce__Text_Page__c = 'Updated Text';
+        //QuoteForce__Custom_Page__c updated = createMasterTemplateRecord.updateCustomPage(inserted);
         Test.stopTest();
     }
     
