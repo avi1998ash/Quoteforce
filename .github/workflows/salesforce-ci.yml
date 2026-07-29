@@ -56,7 +56,7 @@ jobs:
             --client-id "${{ secrets.SF_CLIENT_ID }}" \
             --jwt-key-file server.key \
             --username "${{ secrets.SF_USERNAME }}" \
-            --instance-url "${{ secrets.SF_INSTANCE_URL }}"
+            --instance-url "${{ secrets.SF_INSTANCE_URL }}" \
             --set-default
 
       # Display Authenticated Org
