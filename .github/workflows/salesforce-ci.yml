@@ -7,49 +7,36 @@ on:
 
   pull_request:
     branches:
-      - develop
-
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   salesforce-validation:
-
     runs-on: ubuntu-latest
 
     steps:
-
       # Checkout Repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-
       # Install Salesforce CLI
       - name: Install Salesforce CLI
         run: |
-          npm install @salesforce/cli --global
+          npm install -g @salesforce/cli
 
-
-      # Verify Salesforce CLI
+      # Verify CLI
       - name: Verify Salesforce CLI
-        run: |
-          sf --version
+        run: sf --version
 
-
-      # Create JWT Key File
+      # Create JWT Key
       - name: Create JWT Key File
-        shell: bash
         run: |
           echo "${{ secrets.SF_JWT_KEY }}" > server.key
 
-
-      # Verify Key File
-      - name: Verify Key File
-        run: |
-          ls -l server.key
-          head -1 server.key
-          tail -1 server.key
-
-
-      # Authenticate Salesforce Org
+      # Authenticate Org
       - name: Authenticate Salesforce
         run: |
           sf org login jwt \
@@ -59,14 +46,15 @@ jobs:
             --instance-url "${{ secrets.SF_INSTANCE_URL }}" \
             --set-default
 
-      # Display Authenticated Org
+      # Verify Authentication
       - name: Display Org
         run: |
           sf org display
 
-      # Display Repository Files
-      - name: Display Repository Files
+      # Validate Deployment (No Changes Committed)
+      - name: Validate Deployment
         run: |
-          ls -la
-
-          
+          sf project deploy validate \
+            --source-dir force-app \
+            --test-level RunLocalTests \
+            --wait 120
