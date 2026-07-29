@@ -9,19 +9,25 @@ on:
     branches:
       - develop
 
-
 jobs:
-
   salesforce-validation:
-
     runs-on: ubuntu-latest
 
     steps:
-
-      # Step 1: Get the code from repository
+      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Verify repository files
+      # Step 2: Install Salesforce CLI
+      - name: Install Salesforce CLI
+        run: |
+          npm install @salesforce/cli --global
+
+      # Step 3: Verify Salesforce CLI
+      - name: Verify Salesforce CLI
+        run: |
+          sf version
+
+      # Step 4: Display project files
       - name: Display Project Files
         run: ls -la
