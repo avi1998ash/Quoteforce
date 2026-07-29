@@ -18,23 +18,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Install Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      # Install Salesforce CLI (Official)
+      - name: Setup Salesforce CLI
+        uses: salesforcecli/github-action@v2
 
-      # Install Salesforce CLI
-      - name: Install Salesforce CLI
-        run: |
-          npm install --global @salesforce/cli
-
-      # Verify CLI installation
+      # Verify CLI
       - name: Verify Salesforce CLI
         run: |
           sf version
 
-      # Create JWT private key file
+      # Create JWT Key File
       - name: Create JWT Key File
         shell: bash
         run: |
@@ -42,9 +35,8 @@ jobs:
           ${{ secrets.SF_JWT_KEY }}
           EOF
 
-      # Verify key file (safe debug)
+      # Verify key file
       - name: Verify Key File
-        shell: bash
         run: |
           ls -l server.key
           head -1 server.key
@@ -59,8 +51,8 @@ jobs:
             --username "${{ secrets.SF_USERNAME }}" \
             --instance-url "${{ secrets.SF_INSTANCE_URL }}"
 
-      # Verify login
-      - name: Display Org Information
+      # Display authenticated org
+      - name: Display Org
         run: |
           sf org display
 
