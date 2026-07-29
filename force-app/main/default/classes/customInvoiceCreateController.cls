@@ -6,7 +6,7 @@ public with sharing class customInvoiceCreateController {
         
         Schema.DescribeFieldResult countryFieldDescribe = QuoteForce__Quotes__c.QuoteForce__Bill_To__CountryCode__s.getDescribe();
         List<Schema.PicklistEntry> countryPicklistValues = countryFieldDescribe.getPicklistValues();
-        
+    
         for (Schema.PicklistEntry countryEntry : countryPicklistValues) {
             Map<String, String> countryMap = new Map<String, String>();
             countryMap.put('label', countryEntry.getLabel());
