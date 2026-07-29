@@ -14,20 +14,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+      # Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Install Salesforce CLI
+      # Install Salesforce CLI
       - name: Install Salesforce CLI
         run: |
           npm install @salesforce/cli --global
 
-      # Step 3: Verify Salesforce CLI
+      # Verify CLI
       - name: Verify Salesforce CLI
-        run: |
-          sf version
+        run: sf version
 
-      # Step 4: Display project files
-      - name: Display Project Files
-        run: ls -la
+      # Create JWT Key File
+      - name: Create JWT Key File
+        run: |
+          echo "${{ secrets.SF_JWT_KEY }}" > server.key
+
+      # Authenticate Salesforce
+      - name: Authenticate Salesforce
+        run: |
+          sf org login jwt \
+            --client-id "${{ secrets.SF_CLIENT_ID }}" \
+            --jwt-key-file server.key \
+            --username "${{ secrets.SF_USERNAME }}" \
+            --instance-url "${{ secrets.SF_INSTANCE_URL }}"
+
+      # Verify Login
+      - name: Display Org
+        run: |
+          sf org display
