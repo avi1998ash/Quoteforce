@@ -57,7 +57,7 @@ jobs:
             --jwt-key-file server.key \
             --username "${{ secrets.SF_USERNAME }}" \
             --instance-url "${{ secrets.SF_INSTANCE_URL }}"
-
+            --set-default
 
       # Display Authenticated Org
       - name: Display Org
