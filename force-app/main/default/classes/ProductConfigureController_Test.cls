@@ -163,7 +163,7 @@ public class ProductConfigureController_Test {
         Test.startTest();
         List<QuoteForce__Product__c> foundProducts = ProductConfigureController.GetProducts('Configured', 'USD');
         List<QuoteForce__Product__c> allCurrencyProducts = ProductConfigureController.GetProducts('', null);
-        Boolean hasChildren = ProductConfigureController.hasChildRecords(
+        ProductConfigureController.ChildRecordCheckResult  hasChildren = ProductConfigureController.hasChildRecords(
             [SELECT Id FROM QuoteForce__Product__c WHERE QuoteForce__Product_Code__c = 'PC-001' LIMIT 1].Id
         );
         String deleteProductResult = ProductConfigureController.deleteProduct(deletableProduct.Id);
