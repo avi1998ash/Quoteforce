@@ -139,11 +139,11 @@ public with sharing class AdminSettingController {
     }
     
    private static String validateFileField(String fieldName) {
-    if (String.isBlank(fieldName) || !FILE_URL_FIELDS.contains(fieldName)) {
-        throw new AuraHandledException('Invalid file field');
+        if (String.isBlank(fieldName) || !FILE_URL_FIELDS.contains(fieldName)) {
+            throw new AuraHandledException('Invalid file field');
+        }
+        return fieldName;
     }
-    return fieldName;
-}
     
     private static Id requireAdminConfigId() {
         return resolveAdminConfigId();
