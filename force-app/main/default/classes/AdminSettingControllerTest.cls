@@ -43,7 +43,6 @@ public class AdminSettingControllerTest {
         QuoteForce__Admin_Configuration__c savedConfig = AdminSettingController.saveAdminConfig(config);
         Test.stopTest();
     }
-
     @isTest
     static void testDeleteCompanyLogo() {
         QuoteForce__Admin_Configuration__c config = [SELECT Id FROM QuoteForce__Admin_Configuration__c LIMIT 1];
