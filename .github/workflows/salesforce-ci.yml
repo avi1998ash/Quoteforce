@@ -41,12 +41,14 @@ jobs:
           echo "${{ secrets.SF_JWT_KEY }}" > server.key
 
 
-      # Verify Key File
+      # Verify Key Filea
       - name: Verify Key File
         run: |
           ls -l server.key
           head -1 server.key
           tail -1 server.key
+
+
 
 
       # Authenticate Salesforce Org
@@ -57,7 +59,7 @@ jobs:
             --jwt-key-file server.key \
             --username "${{ secrets.SF_USERNAME }}" \
             --instance-url "${{ secrets.SF_INSTANCE_URL }}"
-
+            --set-default
 
       # Display Authenticated Org
       - name: Display Org
