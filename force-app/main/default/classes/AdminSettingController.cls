@@ -75,8 +75,6 @@ public with sharing class AdminSettingController {
             }
         }
     }
-    
-    
     @AuraEnabled
     public static QuoteForce__Admin_Configuration__c saveAdminConfig(QuoteForce__Admin_Configuration__c config) {
         if (config == null) {
