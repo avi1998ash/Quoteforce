@@ -49,13 +49,6 @@ jobs:
           tail -1 server.key
 
 
-
-
-
-
-
-
-
       # Authenticate Salesforce Org
       - name: Authenticate Salesforce
         run: |
