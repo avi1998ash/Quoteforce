@@ -51,7 +51,8 @@ public with sharing class AdminSettingController {
         Id resolvedId = resolveAdminConfigId();
         return queryAdminConfig(resolvedId);
     }
-    
+
+Shubham sen testing
     public static void validateAdminConfig(QuoteForce__Admin_Configuration__c config) {
         
         // Email Validation
